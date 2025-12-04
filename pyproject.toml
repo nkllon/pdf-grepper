@@ -1,0 +1,71 @@
+%YAML 1.1
+--- # This is a TOML file; YAML header is ignored by parsers that expect TOML
+[project]
+name = "pdf-grepper"
+version = "0.1.0"
+description = "Hybrid PDF intelligence to parse PDFs (incl. OCR), extract entities/relations/diagrams, infer domain, and export a Turtle ontology."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [
+  { name = "nkllon" }
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Topic :: Text Processing :: Linguistic",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+]
+
+[project.scripts]
+pdf-grepper = "pdf_grepper.cli:app"
+
+[project.urls]
+Homepage = "https://github.com/nkllon/pdf-grepper"
+Issues = "https://github.com/nkllon/pdf-grepper/issues"
+
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = [
+  "pytest>=8.0.0",
+  "black>=24.0.0",
+  "ruff>=0.7.0",
+  "mypy>=1.13.0",
+  "types-requests",
+]
+
+[project.dependencies]
+typer = { version = ">=0.12.5", extras = ["all"] }
+rich = ">=13.7.0"
+rdflib = ">=7.0.0"
+pydantic = ">=2.8.0"
+pymupdf = ">=1.24.9"
+Pillow = ">=10.4.0"
+opencv-python = ">=4.10.0.84"
+numpy = ">=1.26.0"
+scipy = ">=1.11.0"
+layoutparser = ">=0.3.4"
+pytesseract = ">=0.3.13"
+pdfminer.six = ">=20240706"
+spacy = ">=3.7.5"
+networkx = ">=3.2.1"
+python-dotenv = ">=1.0.1"
+regex = ">=2024.9.11"
+rapidfuzz = ">=3.9.6"
+requests = ">=2.32.3"
+scikit-learn = ">=1.5.2"
+python-docx = ">=1.1.2"
+tqdm = ">=4.66.5"
+
+[project.optional-dependencies]
+openai = ["openai>=1.54.3"]
+google = ["google-cloud-vision>=3.7.4"]
+aws = ["boto3>=1.35.0"]
+azure = ["azure-ai-formrecognizer>=3.3.3", "azure-ai-vision-imageanalysis>=1.0.0b3"]
+enrich = ["duckduckgo-search>=6.3.2", "wikipedia-api>=0.7.2"]
+
+
