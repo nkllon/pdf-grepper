@@ -51,6 +51,9 @@ Environment:
 - Turtle ontology: classes and properties for document, sections, entities, relations, stakeholders, dimensions, diagrams, and provenance
 - Optional JSON mirror for inspection
 
+### Requirements and traceability
+- See [docs/requirements.md](docs/requirements.md) for functional/non-functional requirements and the traceability matrix.
+
 ### Roadmap
 - Improve diagram reverse engineering (node/edge association, swimlanes, chart axes)
 - Add table structure recovery and CSV export
