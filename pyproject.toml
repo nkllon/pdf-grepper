@@ -1,5 +1,5 @@
-%YAML 1.1
---- # This is a TOML file; YAML header is ignored by parsers that expect TOML
+# %YAML 1.1
+# --- # This is a TOML file; YAML header is ignored by parsers that expect TOML
 [project]
 name = "pdf-grepper"
 version = "0.1.0"
