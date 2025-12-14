@@ -12,6 +12,12 @@ from pdf_grepper.pipeline import run_pipeline
 app = typer.Typer(add_completion=False, no_args_is_help=True)
 
 
+@app.callback()
+def _main() -> None:
+	"""pdf-grepper CLI."""
+	return None
+
+
 @app.command("parse")
 def parse_command(
 	inputs: list[str] = typer.Argument(..., help="Input files: PDF(s) and/or DOCX OCR variants."),

@@ -79,9 +79,9 @@ def test_turtle_round_trip_consistency():
         g = export_turtle(model, ttl_path=path, base_uri="http://example.org/pdf-grepper/")
         g2 = Graph().parse(path, format="turtle")
         # Check that entity URIs are present and relation triple count matches
+        assert any(True for _ in g2.triples((None, None, None)))  # graph parsed and non-empty
         for e in model.entities:
             e_uri = f"http://example.org/pdf-grepper/entity/{e.id}"
-            assert (None, None, None) in g2.triples((None, None, None))  # graph parsed
             # Basic presence: an entity resource exists by label
             assert any(str(o) == e.text for (_, _, o) in g2.triples((None, None, None)))
         # Relation subject/object references exist

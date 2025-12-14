@@ -20,7 +20,9 @@ def extract_diagram_primitives(doc_path: str, page_obj: fitz.Page, page: Page) -
 		# Add rectangles as nodes
 		for path in d["items"]:
 			if path[0] == "re":  # rectangle
-				_, rect, _, _ = path
+				# PyMuPDF drawing item shapes vary by version; tolerate both
+				# ('re', Rect, ...) where tuple length may be 3 or 4+.
+				rect = path[1]
 				node_id = f"n-{uuid4()}"
 				page.diagram_nodes.append(
 					DiagramNode(

@@ -48,6 +48,15 @@ Kiro-style Spec Driven Development implementation on AI-DLC (AI Development Life
 
 Docker is the required and preferred environment for development and test execution. Avoid macOS-local dependency loops; always run commands inside the dev container.
 
+## Testing Policy: Real Dependencies (No Stubs)
+
+The project tests are intended to run against **real, installed dependencies** (e.g., PyMuPDF/`fitz`, rdflib, scikit-learn, python-docx) inside Docker. Do **not** introduce or rely on test stubs for these libraries.
+
+- If tests fail due to missing native/system packages or Python wheels, **fix the Docker image** (`Dockerfile`) and/or the project dependency metadata (`pyproject.toml`) rather than adding stubs.
+- If a dependency is truly optional at runtime, tests should either:
+  - gate the relevant test with a clear skip when the dependency is not installed, or
+  - structure the code to degrade gracefully while still exercising the real installed libs in CI.
+
 ### Build the dev image
 ```bash
 docker build -t pdf-grepper-dev -f Dockerfile .
@@ -64,6 +73,13 @@ docker run --rm -it \
 Notes:
 - The image includes system libs (e.g., Tesseract, libGL) so OCR and PyMuPDF tests work reliably.
 - The container tries `uv` first; if `pyproject.toml` parsing blocks `uv sync`, it falls back to preinstalled deps and plain `pytest`.
+
+If you mount the repository into the container at `/app`, it will shadow the image’s `/app/.venv`. For test runs that rely on the image venv, mount into a different path:
+
+```bash
+docker run --rm -it -v "$PWD":/repo -w /repo pdf-grepper-dev \
+  bash -lc "/app/.venv/bin/python -m pytest -q"
+```
 
 ### Run a single test file
 ```bash

@@ -8,7 +8,7 @@ from docx import Document as DocxDocument
 from PIL import Image
 
 from pdf_grepper.types import DocumentModel, Page, SourceSpan, TextSpan
-from pdf_grepper.pdf.ocr import ocr_image_to_text, tesseract_available
+from pdf_grepper.pdf import ocr as ocr_mod
 
 
 def _extract_text_blocks_from_page(
@@ -40,7 +40,7 @@ def _extract_text_blocks_from_page(
 		try:
 			pix = page.get_pixmap(dpi=300, alpha=False)
 			img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
-			text = ocr_image_to_text(img)
+			text = ocr_mod.ocr_image_to_text(img)
 			if text and text.strip():
 						blocks.append(
 					TextSpan(
@@ -66,10 +66,10 @@ def load_pdf_or_docx(paths: List[str], ocr_mode: str = "auto") -> DocumentModel:
 		collected_sources.append(path)
 		ext = os.path.splitext(path)[1].lower()
 		if ext == ".pdf":
+			# Ensure Tesseract presence when local OCR is requested (do not wrap into ValueError)
+			if ocr_mode == "local" and not ocr_mod.tesseract_available():
+				raise RuntimeError("Tesseract is not available but ocr_mode='local' was requested")
 			try:
-				# Ensure Tesseract presence when local OCR is requested
-				if ocr_mode == "local" and not tesseract_available():
-					raise RuntimeError("Tesseract is not available but ocr_mode='local' was requested")
 				with fitz.open(path) as doc:
 					for i, page in enumerate(doc):
 						do_ocr = ocr_mode in {"local", "auto"}

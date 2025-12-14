@@ -66,7 +66,6 @@ def _document_with_diagrams(source: str, lines: List[str]) -> DocumentModel:
     return DocumentModel(sources=[source], pages=[page])
 
 
-@pytest.mark.usefixtures("install_stubs")
 def test_pipeline_processes_pdf_fixture(monkeypatch, sample_pdf_path: Path, tmp_path: Path):
     def fake_loader(paths, ocr_mode="auto"):
         return _document_with_diagrams(
@@ -110,7 +109,6 @@ def test_pipeline_processes_pdf_fixture(monkeypatch, sample_pdf_path: Path, tmp_
     assert exported["pages"][0]["diagram_nodes"], "Diagrams should be preserved in JSON"
 
 
-@pytest.mark.usefixtures("install_stubs")
 def test_pipeline_docx_offline_without_cloud(sample_docx_path: Path, tmp_path: Path):
     ttl_path = tmp_path / "doc.ttl"
     json_path = tmp_path / "doc.json"
@@ -152,7 +150,6 @@ def test_pipeline_docx_offline_without_cloud(sample_docx_path: Path, tmp_path: P
     assert exported["relations"], "Relations should be exported to JSON"
 
 
-@pytest.mark.usefixtures("install_stubs")
 def test_pipeline_rejects_unsupported_extension(tmp_path: Path):
     bad_path = tmp_path / "note.txt"
     bad_path.write_text("plain text")
