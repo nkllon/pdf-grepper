@@ -39,12 +39,7 @@ def test_cli_basic_flags():
                 json_path,
                 "--ocr",
                 "none",
-                "--cloud",
-                "",
-                "--enrich-web",
-                "False",
                 "--offline",
-                "True",
             ],
         )
         assert result.exit_code == 0
@@ -62,7 +57,7 @@ def test_cli_invalid_ocr_value():
     ttl_path = str(Path(pdf_path).with_suffix(".ttl"))
     try:
         # Typer will accept any string; the pipeline will still run, so this is a smoke test
-        result = runner.invoke(app, ["parse", pdf_path, "--out", ttl_path, "--ocr", "auto", "--offline", "True"])
+        result = runner.invoke(app, ["parse", pdf_path, "--out", ttl_path, "--ocr", "auto", "--offline"])
         assert result.exit_code == 0
     finally:
         Path(pdf_path).unlink(missing_ok=True)

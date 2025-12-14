@@ -14,10 +14,11 @@ def extract_relations(entities: List[Entity], texts: List[Tuple[str, SourceSpan 
 	index_by_text = {e.text.lower(): e for e in entities}
 	relations: List[Relation] = []
 	patterns = [
-		(r"(.+?)\s+uses\s+(.+?)", "pg:uses"),
-		(r"(.+?)\s+depends\s+on\s+(.+?)", "pg:dependsOn"),
-		(r"(.+?)\s+integrates\s+with\s+(.+?)", "pg:integratesWith"),
-		(r"(.+?)\s+is\s+part\s+of\s+(.+?)", "pg:isPartOf"),
+		# Anchor patterns so the object captures the full remainder of the line.
+		(r"(.+?)\s+uses\s+(.+)$", "pg:uses"),
+		(r"(.+?)\s+depends\s+on\s+(.+)$", "pg:dependsOn"),
+		(r"(.+?)\s+integrates\s+with\s+(.+)$", "pg:integratesWith"),
+		(r"(.+?)\s+is\s+part\s+of\s+(.+)$", "pg:isPartOf"),
 	]
 	for text, span in texts:
 		line = text.strip()
