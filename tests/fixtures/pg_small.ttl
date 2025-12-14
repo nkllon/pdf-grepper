@@ -1,0 +1,45 @@
+@prefix pg:   <http://example.org/pdf-grepper/pg#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/pdf-grepper/document/main> a pg:Document .
+
+<http://example.org/pdf-grepper/page/0> a pg:Page ;
+  pg:hasText <http://example.org/pdf-grepper/text/0/0> ;
+  pg:hasText <http://example.org/pdf-grepper/text/0/1> ;
+  pg:hasText <http://example.org/pdf-grepper/text/0/2> .
+
+<http://example.org/pdf-grepper/text/0/0> a pg:TextSpan ;
+  rdfs:label "WARNING: Disconnect power before servicing." ;
+  pg:pageIndex 0 ;
+  pg:bboxX0 50.0 ;
+  pg:bboxY0 100.0 ;
+  pg:bboxX1 550.0 ;
+  pg:bboxY1 112.0 .
+
+<http://example.org/pdf-grepper/text/0/1> a pg:TextSpan ;
+  rdfs:label "1. Turn off the breaker." ;
+  pg:pageIndex 0 ;
+  pg:bboxX0 50.0 ;
+  pg:bboxY0 130.0 ;
+  pg:bboxX1 550.0 ;
+  pg:bboxY1 142.0 .
+
+<http://example.org/pdf-grepper/text/0/2> a pg:TextSpan ;
+  rdfs:label "2. Press the red reset button." ;
+  pg:pageIndex 0 ;
+  pg:bboxX0 50.0 ;
+  pg:bboxY0 160.0 ;
+  pg:bboxX1 550.0 ;
+  pg:bboxY1 172.0 .
+
+<http://example.org/pdf-grepper/dimension/d1> a pg:Dimension ;
+  rdfs:label "wrench size" ;
+  pg:hasValue "5" ;
+  pg:hasUnit "in" ;
+  pg:pageIndex 0 ;
+  pg:bboxX0 60.0 ;
+  pg:bboxY0 164.0 ;
+  pg:bboxX1 120.0 ;
+  pg:bboxY1 170.0 .
+

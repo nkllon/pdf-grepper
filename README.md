@@ -35,6 +35,18 @@ pdf-grepper parse input.pdf \
   --cache .pgcache
 ```
 
+Post-parse passes (deterministic-first, offline-friendly when driven by `model.ttl`):
+
+```bash
+# Layer B: Dimensional Analysis (DA) over pg:* forensic capture
+pdf-grepper da model.ttl --out da.ttl
+
+# Layer C: Meaning extraction (claims + procedures) over pg:* (+ optional da:*)
+pdf-grepper meaning model.ttl --da da.ttl --out meaning.ttl
+```
+
+Both `da` and `meaning` validate their outputs with SHACL and exit non-zero on violations (missing evidence/confidence, etc.).
+
 Args:
 - `--ocr`: none|local|auto (auto chooses OCR if page text is sparse)
 - `--cloud`: comma-list of adapters: openai,google,aws,azure

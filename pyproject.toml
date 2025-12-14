@@ -42,6 +42,7 @@ dev-dependencies = [
 typer = { version = ">=0.12.5", extras = ["all"] }
 rich = ">=13.7.0"
 rdflib = ">=7.0.0"
+pyshacl = ">=0.28.0"
 pydantic = ">=2.8.0"
 pymupdf = ">=1.24.9"
 Pillow = ">=10.4.0"

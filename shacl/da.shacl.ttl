@@ -1,0 +1,80 @@
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix da:   <https://nkllon.org/da#> .
+@prefix dim:  <https://nkllon.org/dim#> .
+@prefix pg:   <http://example.org/pdf-grepper/pg#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+da:AnalysisShape a sh:NodeShape ;
+  sh:targetClass da:Analysis ;
+  sh:property [
+    sh:path da:aboutDocument ;
+    sh:class pg:Document ;
+    sh:minCount 1 ;
+  ] ;
+  sh:property [
+    sh:path da:hasBlock ;
+    sh:class da:Block ;
+    sh:minCount 1 ;
+  ] .
+
+da:BlockShape a sh:NodeShape ;
+  sh:targetClass da:Block ;
+  sh:property [
+    sh:path da:blockLabel ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+  ] ;
+  sh:property [
+    sh:path da:spanCount ;
+    sh:datatype xsd:integer ;
+    sh:minCount 1 ;
+  ] ;
+  sh:property [
+    sh:path da:hasEvidenceSpan ;
+    sh:class pg:TextSpan ;
+    sh:minCount 1 ;
+  ] .
+
+da:ObservationShape a sh:NodeShape ;
+  sh:targetClass da:Observation ;
+  sh:property [
+    sh:path da:dimension ;
+    sh:class dim:DimensionAxis ;
+    sh:minCount 1 ;
+  ] ;
+  sh:property [
+    sh:path da:confidence ;
+    sh:datatype xsd:decimal ;
+    sh:minInclusive 0.0 ;
+    sh:maxInclusive 1.0 ;
+    sh:minCount 1 ;
+  ] ;
+  sh:property [
+    sh:path da:hasEvidenceSpan ;
+    sh:class pg:TextSpan ;
+    sh:minCount 1 ;
+  ] .
+
+da:QuantityMentionShape a sh:NodeShape ;
+  sh:targetClass da:QuantityMention ;
+  sh:property [
+    sh:path da:numericValue ;
+    sh:datatype xsd:decimal ;
+    sh:minCount 1 ;
+  ] ;
+  sh:property [
+    sh:path da:unit ;
+    sh:class qudt:Unit ;
+    sh:minCount 1 ;
+  ] ;
+  sh:property [
+    sh:path da:originalText ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+  ] ;
+  sh:property [
+    sh:path da:hasEvidenceSpan ;
+    sh:class pg:TextSpan ;
+    sh:minCount 1 ;
+  ] .

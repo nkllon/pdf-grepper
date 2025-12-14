@@ -26,7 +26,7 @@ RUN uv venv .venv
 # (Keeps container useful even before project metadata is adjusted.)
 RUN uv pip install -p .venv/bin/python -q \
     pytest \
-    "typer>=0.12.5" rich rdflib pymupdf Pillow scikit-learn python-docx pytesseract \
+    "typer>=0.12.5" rich rdflib pyshacl pymupdf Pillow scikit-learn python-docx pytesseract \
     numpy scipy networkx requests regex rapidfuzz
 
 # Default command: print versions

@@ -1,0 +1,55 @@
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix m:    <https://nkllon.org/meaning#> .
+@prefix pg:   <http://example.org/pdf-grepper/pg#> .
+@prefix da:   <https://nkllon.org/da#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+m:ClaimShape a sh:NodeShape ;
+  sh:targetClass m:Claim ;
+  sh:property [
+    sh:path m:confidence ;
+    sh:datatype xsd:decimal ;
+    sh:minInclusive 0.0 ;
+    sh:maxInclusive 1.0 ;
+    sh:minCount 1 ;
+  ] ;
+  sh:property [
+    sh:path m:polarity ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+  ] ;
+  sh:property [
+    sh:path m:evidenceSpan ;
+    sh:class pg:TextSpan ;
+    sh:minCount 1 ;
+  ] ;
+  sh:or (
+    [ sh:property [ sh:path m:subject ; sh:minCount 1 ] ]
+    [ sh:property [ sh:path m:predicate ; sh:minCount 1 ] ]
+  ) .
+
+m:ProcedureShape a sh:NodeShape ;
+  sh:targetClass m:Procedure ;
+  sh:property [
+    sh:path m:hasStep ;
+    sh:class m:Step ;
+    sh:minCount 1 ;
+  ] .
+
+m:StepShape a sh:NodeShape ;
+  sh:targetClass m:Step ;
+  sh:property [
+    sh:path m:stepOrder ;
+    sh:datatype xsd:integer ;
+    sh:minCount 1 ;
+  ] ;
+  sh:property [
+    sh:path m:actionVerb ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+  ] ;
+  sh:property [
+    sh:path m:derivedFromSpan ;
+    sh:class pg:TextSpan ;
+    sh:minCount 1 ;
+  ] .

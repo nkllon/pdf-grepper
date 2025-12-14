@@ -1,0 +1,124 @@
+@prefix da:   <https://nkllon.org/da#> .
+@prefix dim:  <https://nkllon.org/dim#> .
+@prefix pg:   <http://example.org/pdf-grepper/pg#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+#################################################################
+# Dimensional Analysis (DA) Vocabulary
+# Layer B: features and signals derived from pg:* forensic capture
+#################################################################
+
+da:Analysis a rdfs:Class ;
+  rdfs:label "Dimensional Analysis Run" ;
+  rdfs:comment "A single DA run over a parsed pg:Document producing blocks, observations, entity candidates, and normalized quantities." .
+
+da:Block a rdfs:Class ;
+  rdfs:label "Layout/Topic Block Candidate" ;
+  rdfs:comment "A span cluster (section-ish) derived from layout + cues; not semantic truth yet." .
+
+da:Observation a rdfs:Class ;
+  rdfs:label "Dimensional Observation" ;
+  rdfs:comment "A scored observation against a dimension axis, grounded in evidence spans." .
+
+da:EntityCandidate a rdfs:Class ;
+  rdfs:label "Entity Candidate" ;
+  rdfs:comment "Tentative entity mention with type hints and evidence." .
+
+da:QuantityMention a rdfs:Class ;
+  rdfs:label "Quantity Mention" ;
+  rdfs:comment "Normalized quantity derived from pg:Dimension or regex (QUDT-ready)." .
+
+da:Extractor a rdfs:Class ;
+  rdfs:label "Extractor (Agent/Tool)" ;
+  rdfs:comment "A software component producing DA outputs (for provenance)." .
+
+############################
+# Core DA properties
+############################
+
+da:aboutDocument a rdf:Property ;
+  rdfs:domain da:Analysis ; rdfs:range pg:Document ;
+  rdfs:label "about document" .
+
+da:hasBlock a rdf:Property ;
+  rdfs:domain da:Analysis ; rdfs:range da:Block ;
+  rdfs:label "has block" .
+
+da:hasObservation a rdf:Property ;
+  rdfs:domain da:Analysis ; rdfs:range da:Observation ;
+  rdfs:label "has observation" .
+
+da:hasEntityCandidate a rdf:Property ;
+  rdfs:domain da:Analysis ; rdfs:range da:EntityCandidate ;
+  rdfs:label "has entity candidate" .
+
+da:hasQuantityMention a rdf:Property ;
+  rdfs:domain da:Analysis ; rdfs:range da:QuantityMention ;
+  rdfs:label "has quantity mention" .
+
+da:hasEvidenceSpan a rdf:Property ;
+  rdfs:range pg:TextSpan ;
+  rdfs:label "has evidence span" ;
+  rdfs:comment "Points to one or more pg:TextSpan items supporting an Observation/Candidate/QuantityMention/Block." .
+
+da:confidence a rdf:Property ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "confidence" ;
+  rdfs:comment "0..1 confidence for extraction/interpretation." .
+
+da:dimension a rdf:Property ;
+  rdfs:domain da:Observation ; rdfs:range dim:DimensionAxis ;
+  rdfs:label "dimension axis" .
+
+da:blockLabel a rdf:Property ;
+  rdfs:domain da:Block ; rdfs:range xsd:string ;
+  rdfs:label "block label" .
+
+da:spanCount a rdf:Property ;
+  rdfs:domain da:Block ; rdfs:range xsd:integer ;
+  rdfs:label "span count" .
+
+da:entityTypeHint a rdf:Property ;
+  rdfs:domain da:EntityCandidate ; rdfs:range xsd:string ;
+  rdfs:label "entity type hint" ;
+  rdfs:comment "Coarse hint like 'Tool', 'Org', 'Place', 'Component', 'Procedure'." .
+
+da:canonicalString a rdf:Property ;
+  rdfs:domain da:EntityCandidate ; rdfs:range xsd:string ;
+  rdfs:label "canonical string" .
+
+############################
+# Quantities (QUDT compatible)
+############################
+
+da:numericValue a rdf:Property ;
+  rdfs:domain da:QuantityMention ; rdfs:range xsd:decimal ;
+  rdfs:label "numeric value" .
+
+da:unit a rdf:Property ;
+  rdfs:domain da:QuantityMention ; rdfs:range qudt:Unit ;
+  rdfs:label "unit" .
+
+da:originalText a rdf:Property ;
+  rdfs:domain da:QuantityMention ; rdfs:range xsd:string ;
+  rdfs:label "original text" .
+
+############################
+# Dimension axes (starter set; map to Fort 21+1 later)
+############################
+
+dim:DimensionAxis a rdfs:Class ;
+  rdfs:label "Dimension Axis" .
+
+dim:SafetyRisk a dim:DimensionAxis ; rdfs:label "Safety Risk" .
+dim:Cost a dim:DimensionAxis ; rdfs:label "Cost" .
+dim:Time a dim:DimensionAxis ; rdfs:label "Time" .
+dim:ToolsRequired a dim:DimensionAxis ; rdfs:label "Tools Required" .
+dim:SkillLevel a dim:DimensionAxis ; rdfs:label "Skill Level" .
+dim:Compliance a dim:DimensionAxis ; rdfs:label "Compliance / Disposal" .
+dim:Location a dim:DimensionAxis ; rdfs:label "Location" .

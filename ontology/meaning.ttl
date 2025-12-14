@@ -1,0 +1,92 @@
+@prefix m:    <https://nkllon.org/meaning#> .
+@prefix pg:   <http://example.org/pdf-grepper/pg#> .
+@prefix da:   <https://nkllon.org/da#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+#################################################################
+# Meaning Vocabulary
+# Layer C: semantic entities, claims, procedures, hazards, recs
+# NOTE: Claims are represented as claims w/ provenance, not facts.
+#################################################################
+
+m:Entity a rdfs:Class ;
+  rdfs:label "Semantic Entity" .
+
+m:Claim a rdfs:Class ;
+  rdfs:label "Extracted Claim" ;
+  rdfs:comment "A statement asserted by the source document, represented as a claim with provenance and confidence." .
+
+m:Procedure a rdfs:Class ;
+  rdfs:label "Procedure" .
+
+m:Step a rdfs:Class ;
+  rdfs:label "Procedure Step" .
+
+m:Hazard a rdfs:Class ;
+  rdfs:label "Hazard" .
+
+m:Recommendation a rdfs:Class ;
+  rdfs:label "Recommendation" .
+
+############################
+# Domain starter types (extend freely)
+############################
+
+m:GarbageDisposalUnit a rdfs:Class ; rdfs:subClassOf m:Entity ; rdfs:label "Garbage Disposal Unit" .
+m:Leak a rdfs:Class ; rdfs:subClassOf m:Entity ; rdfs:label "Leak" .
+m:MotorHousing a rdfs:Class ; rdfs:subClassOf m:Entity ; rdfs:label "Motor Housing" .
+m:Tool a rdfs:Class ; rdfs:subClassOf m:Entity ; rdfs:label "Tool" .
+m:AllenWrench a rdfs:Class ; rdfs:subClassOf m:Tool ; rdfs:label "Allen (Hex) Wrench" .
+m:ResetButton a rdfs:Class ; rdfs:subClassOf m:Entity ; rdfs:label "Reset Button" .
+
+m:Place a rdfs:Class ; rdfs:subClassOf m:Entity ; rdfs:label "Place" .
+m:Organization a rdfs:Class ; rdfs:subClassOf m:Entity ; rdfs:label "Organization" .
+
+############################
+# Claim structure
+############################
+
+m:subject a rdf:Property ; rdfs:domain m:Claim ; rdfs:range m:Entity ; rdfs:label "subject" .
+m:predicate a rdf:Property ; rdfs:domain m:Claim ; rdfs:range xsd:string ; rdfs:label "predicate" .
+m:object a rdf:Property ; rdfs:domain m:Claim ; rdfs:range rdfs:Resource ; rdfs:label "object" .
+
+m:polarity a rdf:Property ;
+  rdfs:domain m:Claim ; rdfs:range xsd:string ;
+  rdfs:label "polarity" ;
+  rdfs:comment "e.g., 'asserts', 'denies', 'hedges'." .
+
+m:confidence a rdf:Property ;
+  rdfs:domain m:Claim ; rdfs:range xsd:decimal ;
+  rdfs:label "confidence" .
+
+m:strength a rdf:Property ;
+  rdfs:domain m:Claim ; rdfs:range xsd:string ;
+  rdfs:label "strength" ;
+  rdfs:comment "Optional: 'must', 'should', 'may', 'avoid', etc." .
+
+# Evidence anchoring
+m:evidenceSpan a rdf:Property ;
+  rdfs:domain m:Claim ; rdfs:range pg:TextSpan ;
+  rdfs:label "evidence span" .
+
+m:evidenceObservation a rdf:Property ;
+  rdfs:domain m:Claim ; rdfs:range da:Observation ;
+  rdfs:label "evidence observation" .
+
+############################
+# Procedure model
+############################
+
+m:hasStep a rdf:Property ; rdfs:domain m:Procedure ; rdfs:range m:Step ; rdfs:label "has step" .
+m:stepOrder a rdf:Property ; rdfs:domain m:Step ; rdfs:range xsd:integer ; rdfs:label "step order" .
+m:actionVerb a rdf:Property ; rdfs:domain m:Step ; rdfs:range xsd:string ; rdfs:label "action verb" .
+m:requiresTool a rdf:Property ; rdfs:domain m:Step ; rdfs:range m:Tool ; rdfs:label "requires tool" .
+m:hasHazard a rdf:Property ; rdfs:domain m:Step ; rdfs:range m:Hazard ; rdfs:label "has hazard" .
+m:expectedOutcome a rdf:Property ; rdfs:domain m:Step ; rdfs:range xsd:string ; rdfs:label "expected outcome" .
+
+# Traceability (span-level)
+m:derivedFromDocument a rdf:Property ; rdfs:range pg:Document ; rdfs:label "derived from document" .
+m:derivedFromSpan a rdf:Property ; rdfs:range pg:TextSpan ; rdfs:label "derived from span" .
