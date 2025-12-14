@@ -12,6 +12,8 @@ argument-hint: <feature-name:$1>
   - Clear identification of missing capabilities and integration challenges
   - Multiple viable implementation approaches evaluated
   - Technical research needs identified for design phase
+  - Close gaps between requirements and implementations.
+  - Comprehensive analysis of code base implementations, and gaps to requirements. Infer requirements to close gaps.
 </background_information>
 
 <instructions>

@@ -43,3 +43,44 @@ Kiro-style Spec Driven Development implementation on AI-DLC (AI Development Life
 - Load entire `.kiro/steering/` as project memory
 - Default files: `product.md`, `tech.md`, `structure.md`
 - Custom files are supported (managed via `/kiro/steering-custom`)
+
+## Docker-first Development (required for dev)
+
+Docker is the required and preferred environment for development and test execution. Avoid macOS-local dependency loops; always run commands inside the dev container.
+
+### Build the dev image
+```bash
+docker build -t pdf-grepper-dev -f Dockerfile .
+```
+
+### Run the full test suite
+```bash
+docker run --rm -it \
+  -v "$PWD":/app -w /app \
+  pdf-grepper-dev \
+  bash -lc "uv run pytest -q || .venv/bin/python -m pytest -q"
+```
+
+Notes:
+- The image includes system libs (e.g., Tesseract, libGL) so OCR and PyMuPDF tests work reliably.
+- The container tries `uv` first; if `pyproject.toml` parsing blocks `uv sync`, it falls back to preinstalled deps and plain `pytest`.
+
+### Run a single test file
+```bash
+docker run --rm -it -v "$PWD":/app -w /app pdf-grepper-dev \
+  bash -lc "uv run pytest -q tests/test_property_export_ttl.py || .venv/bin/python -m pytest -q tests/test_property_export_ttl.py"
+```
+
+### Run the CLI via Docker
+```bash
+docker run --rm -it -v "$PWD":/app -w /app pdf-grepper-dev \
+  bash -lc "uv run pdf-grepper parse samples/sample.pdf --out model.ttl --offline True || pdf-grepper parse samples/sample.pdf --out model.ttl --offline True"
+```
+
+### Guidance and Approach
+- Always prefer containerized runs for tests and CI parity.
+- Agents implementing features MUST:
+  1) Write tests first.
+  2) Run tests in Docker.
+  3) Make minimal code to pass, then refactor.
+- If you need additional system packages, update the `Dockerfile` rather than relying on host installs.

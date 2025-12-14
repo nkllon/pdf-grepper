@@ -19,3 +19,14 @@ def ocr_image_to_text(image: Image.Image, lang: str = "eng") -> Optional[str]:
 		return None
 
 
+def tesseract_available() -> bool:
+	"""
+	Check if Tesseract is available in PATH via pytesseract.
+	"""
+	try:
+		_ = pytesseract.get_tesseract_version()
+		return True
+	except Exception:
+		return False
+
+

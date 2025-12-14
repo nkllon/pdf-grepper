@@ -33,25 +33,25 @@ This document enumerates the functional and non-functional requirements for `pdf
 ## Traceability Matrix
 | ID | Description (summary) | Modules | Validation artifacts (planned/existing) |
 | --- | --- | --- | --- |
-| FR-1 | Document ingestion | `pdf_grepper.pdf.loader`, `pdf_grepper.pipeline` | Unit tests for loader (planned `tests/test_loader.py`); pipeline integration tests (planned `tests/test_pipeline.py`) |
-| FR-2 | OCR handling | `pdf_grepper.pdf.ocr`, `pdf_grepper.pipeline`, `pdf_grepper.cloud.*` | OCR decision unit tests (planned `tests/test_ocr_mode.py`); adapter mocks in integration tests |
-| FR-3 | Layout parsing | `pdf_grepper.pdf.layout`, `pdf_grepper.pipeline` | Layout parsing unit tests (planned `tests/test_layout.py`) |
-| FR-4 | Entity extraction | `pdf_grepper.ie.entities`, `pdf_grepper.pipeline` | Entity extraction unit tests (planned `tests/test_entities.py`); docs describing entity schema |
-| FR-5 | Relation extraction | `pdf_grepper.ie.relations`, `pdf_grepper.pipeline` | Relation extraction unit tests (planned `tests/test_relations.py`) |
-| FR-6 | Stakeholder identification | `pdf_grepper.ie.stakeholders`, `pdf_grepper.pipeline` | Stakeholder inference unit tests (planned `tests/test_stakeholders.py`) |
-| FR-7 | Diagram analysis | `pdf_grepper.diagrams.extract`, `pdf_grepper.diagrams.interpret`, `pdf_grepper.pipeline` | Diagram parsing tests (planned `tests/test_diagrams.py`) |
-| FR-8 | Dimension discovery | `pdf_grepper.dimensions.discover`, `pdf_grepper.pipeline` | Dimension discovery tests (planned `tests/test_dimensions.py`) |
-| FR-9 | Domain enrichment | `pdf_grepper.enrich.web_search`, `pdf_grepper.cloud.*`, `pdf_grepper.pipeline` | Enrichment toggle tests (planned `tests/test_enrich.py`); adapter contract docs |
-| FR-10 | Ontology export | `pdf_grepper.ontology.export_ttl`, `pdf_grepper.ontology.model`, `pdf_grepper.pipeline` | Export format tests (planned `tests/test_export.py`); sample ontology fixtures |
-| FR-11 | CLI orchestration | `pdf_grepper.cli`, `pdf_grepper.pipeline` | CLI invocation tests (planned `tests/test_cli.py`); README usage examples |
-| FR-12 | Caching and provenance | `pdf_grepper.pipeline`, cache handling in adapters | Cache behavior tests (planned `tests/test_cache.py`); provenance docs |
-| NFR-1 | Configurability | `pdf_grepper.cli`, config handling in pipeline/adapters | CLI flag tests (planned `tests/test_cli_flags.py`); configuration docs |
-| NFR-2 | Offline-friendly | `pdf_grepper.cli`, `pdf_grepper.pipeline`, `pdf_grepper.cloud.*` | Offline mode tests with mocked network (planned `tests/test_offline.py`) |
-| NFR-3 | Extensibility | Modular structure across `pdf_grepper.cloud.*`, `pdf_grepper.enrich.*`, `pdf_grepper.ontology.*` | Architecture docs; adapter interface tests (planned `tests/test_adapter_contracts.py`) |
-| NFR-4 | Observability | Logging within `pdf_grepper.pipeline`, cloud adapters | Logging coverage tests (planned `tests/test_logging.py`); operator docs |
+| FR-1 | Document ingestion | `pdf_grepper.pdf.loader`, `pdf_grepper.pipeline` | `tests/test_property_pdf_loading.py`, `tests/test_property_provenance_and_invalid.py`, `tests/test_integration_pipeline.py` |
+| FR-2 | OCR handling | `pdf_grepper.pdf.ocr`, `pdf_grepper.pipeline`, `pdf_grepper.cloud.*` | `tests/test_property_ocr_modes.py`, `tests/test_property_offline_and_tesseract.py`, `tests/test_property_cloud_adapters.py` |
+| FR-3 | Layout parsing | `pdf_grepper.pdf.layout`, `pdf_grepper.pipeline` | `tests/test_property_layout.py` |
+| FR-4 | Entity extraction | `pdf_grepper.ie.entities`, `pdf_grepper.pipeline` | `tests/test_property_entities.py` |
+| FR-5 | Relation extraction | `pdf_grepper.ie.relations`, `pdf_grepper.pipeline` | `tests/test_property_relations.py` |
+| FR-6 | Stakeholder identification | `pdf_grepper.ie.stakeholders`, `pdf_grepper.pipeline` | `tests/test_property_stakeholders.py` |
+| FR-7 | Diagram analysis | `pdf_grepper.diagrams.extract`, `pdf_grepper.diagrams.interpret`, `pdf_grepper.pipeline` | `tests/test_property_diagrams.py` |
+| FR-8 | Dimension discovery | `pdf_grepper.dimensions.discover`, `pdf_grepper.pipeline` | `tests/test_property_dimensions.py` |
+| FR-9 | Domain enrichment | `pdf_grepper.enrich.web_search`, `pdf_grepper.cloud.*`, `pdf_grepper.pipeline` | `tests/test_property_web_enrichment.py`, `tests/test_property_cloud_adapters.py` |
+| FR-10 | Ontology export | `pdf_grepper.ontology.export_ttl`, `pdf_grepper.ontology.model`, `pdf_grepper.pipeline` | `tests/test_property_export_ttl.py` (Props 29–33); `tests/test_property_export_json.py` (Props 34–36) |
+| FR-11 | CLI orchestration | `pdf_grepper.cli`, `pdf_grepper.pipeline` | `tests/test_property_cli_flags.py` |
+| FR-12 | Caching and provenance | `pdf_grepper.pipeline`, cache handling in adapters | `tests/test_property_cache.py` (Props 37–38) |
+| NFR-1 | Configurability | `pdf_grepper.cli`, config handling in pipeline/adapters | `tests/test_property_cli_flags.py` |
+| NFR-2 | Offline-friendly | `pdf_grepper.cli`, `pdf_grepper.pipeline`, `pdf_grepper.cloud.*` | `tests/test_property_offline_and_tesseract.py` (Prop 39); `tests/test_property_cloud_adapters.py` (Prop 8) |
+| NFR-3 | Extensibility | Modular structure across `pdf_grepper.cloud.*`, `pdf_grepper.enrich.*`, `pdf_grepper.ontology.*` | `tests/test_property_env_vars.py` |
+| NFR-4 | Observability | Logging within `pdf_grepper.pipeline`, cloud adapters | `tests/test_property_logging.py` (Props 40, 42) |
 | NFR-5 | Performance | `pdf_grepper.pipeline`, caching layers, OCR selection | Benchmark report (planned `docs/performance.md`); performance regression tests (future) |
 | NFR-6 | Portability | Cross-platform-compatible modules and dependency declarations | CI matrix results (future); install docs |
-| NFR-7 | Reproducibility | Deterministic paths in `pdf_grepper.pipeline` when offline/cached | Reproducibility test scenarios (planned `tests/test_reproducibility.py`) |
+| NFR-7 | Reproducibility | Deterministic paths in `pdf_grepper.pipeline` when offline/cached | `tests/test_property_determinism.py` (Prop 43) |
 | NFR-8 | Documentation | This requirements doc, README, module docstrings | Documentation review checklist (future) |
 
 ## Maintenance Notes

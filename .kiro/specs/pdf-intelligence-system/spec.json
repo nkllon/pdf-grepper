@@ -1,0 +1,31 @@
+{
+  "feature": "pdf-intelligence-system",
+  "language": "en",
+  "version": 1,
+  "files": {
+    "requirements": "requirements.md",
+    "design": "design.md",
+    "tasks": "tasks.md"
+  },
+  "status": {
+    "requirements": {
+      "approved": true,
+      "approved_at": "2025-12-05",
+      "approved_by": "user"
+    },
+    "design": {
+      "approved": true,
+      "approved_at": "2025-12-05",
+      "approved_by": "user"
+    },
+    "tasks": {
+      "approved": true,
+      "approved_at": "2025-12-05",
+      "approved_by": "user"
+    },
+    "implementation": {
+      "approved": false
+    }
+  },
+  "notes": "Initialized by spec-requirements; requirements.md already present and serves as the canonical artifact."
+}

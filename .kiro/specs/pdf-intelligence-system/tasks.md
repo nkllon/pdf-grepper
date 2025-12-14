@@ -7,15 +7,15 @@
   - Verify error handling for invalid/corrupted files
   - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5_
 
-- [ ] 1.1 Write property test for PDF loading
+- [x] 1.1 Write property test for PDF loading
   - **Property 1: PDF loading preserves page structure**
   - **Validates: Requirements 1.1**
 
-- [ ] 1.2 Write property test for multi-file provenance
+- [x] 1.2 Write property test for multi-file provenance
   - **Property 2: Multi-file provenance tracking**
   - **Validates: Requirements 1.3**
 
-- [ ] 1.3 Write property test for invalid file handling
+- [x] 1.3 Write property test for invalid file handling
   - **Property 3: Invalid file error reporting**
   - **Validates: Requirements 1.4**
 
@@ -26,19 +26,19 @@
   - Verify confidence score inclusion in OCR results
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5_
 
-- [ ] 2.1 Write property test for auto OCR triggering
+- [x] 2.1 Write property test for auto OCR triggering
   - **Property 4: Auto OCR triggers on sparse text**
   - **Validates: Requirements 2.1**
 
-- [ ] 2.2 Write property test for local OCR mode
+- [x] 2.2 Write property test for local OCR mode
   - **Property 5: Local OCR mode universality**
   - **Validates: Requirements 2.2**
 
-- [ ] 2.3 Write property test for none OCR mode
+- [x] 2.3 Write property test for none OCR mode
   - **Property 6: None OCR mode skips processing**
   - **Validates: Requirements 2.3**
 
-- [ ] 2.4 Write property test for OCR confidence scores
+- [x] 2.4 Write property test for OCR confidence scores
   - **Property 7: OCR confidence inclusion**
   - **Validates: Requirements 2.5**
 
@@ -49,11 +49,11 @@
   - Verify offline mode prevents cloud invocations
   - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5_
 
-- [ ] 3.1 Write property test for offline mode cloud prevention
+- [x] 3.1 Write property test for offline mode cloud prevention
   - **Property 8: Offline mode prevents cloud calls**
   - **Validates: Requirements 3.4, 17.1**
 
-- [ ] 3.2 Write property test for cloud adapter graceful degradation
+- [x] 3.2 Write property test for cloud adapter graceful degradation
   - **Property 9: Cloud adapter graceful degradation**
   - **Validates: Requirements 3.5**
 
@@ -64,15 +64,15 @@
   - Verify SourceSpan provenance is correctly populated
   - _Requirements: 4.1, 4.2, 4.3, 4.4_
 
-- [ ] 4.1 Write property test for bounding box inclusion
+- [x] 4.1 Write property test for bounding box inclusion
   - **Property 10: Layout parsing includes bounding boxes**
   - **Validates: Requirements 4.1, 4.2**
 
-- [ ] 4.2 Write property test for reading order
+- [x] 4.2 Write property test for reading order
   - **Property 11: Reading order preservation**
   - **Validates: Requirements 4.3**
 
-- [ ] 4.3 Write property test for layout parsing resilience
+- [x] 4.3 Write property test for layout parsing resilience
   - **Property 12: Layout parsing resilience**
   - **Validates: Requirements 4.4**
 
@@ -84,15 +84,15 @@
   - Verify source span provenance tracking
   - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5_
 
-- [ ] 5.1 Write property test for entity extraction invocation
+- [x] 5.1 Write property test for entity extraction invocation
   - **Property 13: Entity extraction invocation**
   - **Validates: Requirements 5.1**
 
-- [ ] 5.2 Write property test for entity unique IDs
+- [x] 5.2 Write property test for entity unique IDs
   - **Property 14: Entity unique identifiers**
   - **Validates: Requirements 5.4**
 
-- [ ] 5.3 Write property test for entity deduplication
+- [x] 5.3 Write property test for entity deduplication
   - **Property 15: Entity deduplication**
   - **Validates: Requirements 5.5**
 
@@ -103,11 +103,11 @@
   - Verify cloud adapter refinement integration
   - _Requirements: 6.1, 6.2, 6.3, 6.4_
 
-- [ ] 6.1 Write property test for relation structure
+- [x] 6.1 Write property test for relation structure
   - **Property 16: Relation structure completeness**
   - **Validates: Requirements 6.2**
 
-- [ ] 6.2 Write property test for relation unique IDs
+- [x] 6.2 Write property test for relation unique IDs
   - **Property 17: Relation unique identifiers**
   - **Validates: Requirements 6.3**
 
@@ -118,11 +118,11 @@
   - Verify confidence scoring
   - _Requirements: 7.1, 7.2, 7.3_
 
-- [ ] 7.1 Write property test for stakeholder structure
+- [x] 7.1 Write property test for stakeholder structure
   - **Property 18: Stakeholder structure completeness**
   - **Validates: Requirements 7.2**
 
-- [ ] 7.2 Write property test for stakeholder unique IDs
+- [x] 7.2 Write property test for stakeholder unique IDs
   - **Property 19: Stakeholder unique identifiers**
   - **Validates: Requirements 7.3**
 
@@ -134,15 +134,15 @@
   - Verify error resilience for diagram failures
   - _Requirements: 8.1, 8.2, 8.3, 8.4, 8.5_
 
-- [ ] 8.1 Write property test for diagram node structure
+- [x] 8.1 Write property test for diagram node structure
   - **Property 20: Diagram node structure completeness**
   - **Validates: Requirements 8.3**
 
-- [ ] 8.2 Write property test for diagram edge structure
+- [x] 8.2 Write property test for diagram edge structure
   - **Property 21: Diagram edge structure completeness**
   - **Validates: Requirements 8.4**
 
-- [ ] 8.3 Write property test for diagram processing resilience
+- [x] 8.3 Write property test for diagram processing resilience
   - **Property 22: Diagram processing resilience**
   - **Validates: Requirements 8.5**
 
@@ -152,7 +152,7 @@
   - Implement unique ID assignment and confidence scoring
   - _Requirements: 9.1, 9.2, 9.3, 9.4_
 
-- [ ] 9.1 Write property test for dimension structure
+- [x] 9.1 Write property test for dimension structure
   - **Property 23: Dimension structure completeness**
   - **Validates: Requirements 9.3, 9.4**
 
@@ -163,11 +163,11 @@
   - Test with various document types
   - _Requirements: 10.1, 10.2, 10.3, 10.4_
 
-- [ ] 10.1 Write property test for stop word filtering
+- [x] 10.1 Write property test for stop word filtering
   - **Property 24: Domain label stop word filtering**
   - **Validates: Requirements 10.3**
 
-- [ ] 10.2 Write property test for domain label count limit
+- [x] 10.2 Write property test for domain label count limit
   - **Property 25: Domain label count limit**
   - **Validates: Requirements 10.4**
 
@@ -178,15 +178,15 @@
   - Ensure error resilience for enrichment failures
   - _Requirements: 11.1, 11.2, 11.3, 11.4_
 
-- [ ] 11.1 Write property test for offline web enrichment skip
+- [x] 11.1 Write property test for offline web enrichment skip
   - **Property 26: Offline mode skips web enrichment**
   - **Validates: Requirements 11.2, 17.2**
 
-- [ ] 11.2 Write property test for enrichment metadata
+- [x] 11.2 Write property test for enrichment metadata
   - **Property 27: Web enrichment metadata recording**
   - **Validates: Requirements 11.3**
 
-- [ ] 11.3 Write property test for enrichment resilience
+- [x] 11.3 Write property test for enrichment resilience
   - **Property 28: Web enrichment resilience**
   - **Validates: Requirements 11.4**
 
@@ -198,23 +198,23 @@
   - Verify file writing and Turtle syntax validity
   - _Requirements: 12.1, 12.2, 12.3, 12.4, 12.5_
 
-- [ ] 12.1 Write property test for Turtle round-trip consistency
+- [x] 12.1 Write property test for Turtle round-trip consistency
   - **Property 29: Turtle export round-trip consistency**
   - **Validates: Requirements 12.1**
 
-- [ ] 12.2 Write property test for URI generation
+- [x] 12.2 Write property test for URI generation
   - **Property 30: Turtle URI generation completeness**
   - **Validates: Requirements 12.2**
 
-- [ ] 12.3 Write property test for provenance inclusion
+- [x] 12.3 Write property test for provenance inclusion
   - **Property 31: Turtle provenance inclusion**
   - **Validates: Requirements 12.3**
 
-- [ ] 12.4 Write property test for vocabulary compliance
+- [x] 12.4 Write property test for vocabulary compliance
   - **Property 32: Turtle vocabulary compliance**
   - **Validates: Requirements 12.4**
 
-- [ ] 12.5 Write property test for Turtle file creation
+- [x] 12.5 Write property test for Turtle file creation
   - **Property 33: Turtle file creation**
   - **Validates: Requirements 12.5**
 
@@ -224,15 +224,15 @@
   - Verify file writing and JSON syntax validity
   - _Requirements: 13.1, 13.2, 13.3_
 
-- [ ] 13.1 Write property test for JSON round-trip consistency
+- [x] 13.1 Write property test for JSON round-trip consistency
   - **Property 34: JSON export round-trip consistency**
   - **Validates: Requirements 13.1**
 
-- [ ] 13.2 Write property test for JSON completeness
+- [x] 13.2 Write property test for JSON completeness
   - **Property 35: JSON completeness**
   - **Validates: Requirements 13.2**
 
-- [ ] 13.3 Write property test for JSON file creation
+- [x] 13.3 Write property test for JSON file creation
   - **Property 36: JSON file creation**
   - **Validates: Requirements 13.3**
 
@@ -246,11 +246,11 @@
   - Verify cache directory creation and management
   - _Requirements: 16.1, 16.2, 16.3_
 
-- [ ] 15.1 Write property test for cache consistency
+- [x] 15.1 Write property test for cache consistency
   - **Property 37: Cache write and read consistency**
   - **Validates: Requirements 16.1, 16.2**
 
-- [ ] 15.2 Write property test for cache provenance
+- [x] 15.2 Write property test for cache provenance
   - **Property 38: Cache provenance metadata**
   - **Validates: Requirements 16.3**
 
@@ -261,7 +261,7 @@
   - Test error handling for missing local dependencies
   - _Requirements: 17.1, 17.2, 17.3, 17.4_
 
-- [ ] 16.1 Write property test for offline mode completeness
+- [x] 16.1 Write property test for offline mode completeness
   - **Property 39: Offline mode completeness**
   - **Validates: Requirements 17.3**
 
@@ -273,7 +273,7 @@
   - Ensure output path logging
   - _Requirements: 19.1, 19.2, 19.3, 19.4_
 
-- [ ] 17.1 Write property test for pipeline logging
+- [x] 17.1 Write property test for pipeline logging
   - **Property 40: Pipeline logging invocation**
   - **Validates: Requirements 19.1**
 
@@ -281,7 +281,7 @@
   - **Property 41: Error logging with context**
   - **Validates: Requirements 19.3**
 
-- [ ] 17.3 Write property test for output path logging
+- [x] 17.3 Write property test for output path logging
   - **Property 42: Output path logging**
   - **Validates: Requirements 19.4**
 
@@ -291,7 +291,7 @@
   - Verify offline mode produces identical outputs
   - _Requirements: 20.1, 20.2, 20.3_
 
-- [ ] 18.1 Write property test for deterministic offline processing
+- [x] 18.1 Write property test for deterministic offline processing
   - **Property 43: Deterministic offline processing**
   - **Validates: Requirements 20.1, 20.2**
 
@@ -302,7 +302,7 @@
   - Verify comma-separated cloud adapter parsing
   - _Requirements: 14.1, 14.2, 14.3, 14.4, 14.5, 14.6, 14.7, 14.8_
 
-- [ ] 19.1 Write unit tests for CLI flag parsing
+- [x] 19.1 Write unit tests for CLI flag parsing
   - Test all CLI flags and argument combinations
   - Verify error handling for invalid arguments
   - _Requirements: 14.1-14.8_
@@ -315,7 +315,7 @@
   - Test Azure credentials checking
   - _Requirements: 15.1, 15.2, 15.3, 15.4_
 
-- [ ] 20.1 Write unit tests for environment variable handling
+- [x] 20.1 Write unit tests for environment variable handling
   - Test credential checking for all cloud adapters
   - Verify error messages for missing credentials
   - _Requirements: 15.1-15.4_
@@ -323,7 +323,7 @@
 - [ ] 21. Final checkpoint - Comprehensive integration testing
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 21.1 Write integration tests for end-to-end pipeline
+- [x] 21.1 Write integration tests for end-to-end pipeline
   - Test full pipeline with sample PDFs
   - Test multi-file processing
   - Test offline mode end-to-end

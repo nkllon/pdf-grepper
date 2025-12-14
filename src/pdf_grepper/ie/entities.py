@@ -67,6 +67,12 @@ def extract_entities(texts: List[Tuple[str, Optional[SourceSpan]]]) -> List[Enti
 						confidence=0.4,
 					)
 				)
-	return entities
+	# Deduplicate across both branches by normalized text
+	unique_by_text: dict[str, Entity] = {}
+	for e in entities:
+		key = e.text.lower().strip()
+		if key not in unique_by_text:
+			unique_by_text[key] = e
+	return list(unique_by_text.values())
 
 
